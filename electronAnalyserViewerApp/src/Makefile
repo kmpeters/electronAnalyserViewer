@@ -65,15 +65,8 @@ electronAnalyserViewer_LIBS += protobuf
 
 # install the areaDetector and dxp DLL libraries locally in our bin dir
 
-BIN_INSTALLS_WIN32 += $(wildcard $(AREADETECTOR)/bin/win32-x86/*.dll)
-BIN_INSTALLS_WIN32 += $(wildcard $(FFMPEGSERVER)/bin/win32-x86/*.dll)
-
-# install caRepeater.exe in the bin dir so we dont depend on EPICS being preinstalled
-# on our Windows target machine
-BIN_INSTALLS_WIN32 += $(EPICS_BASE)/bin/$(EPICS_HOST_ARCH)/caRepeater.exe
-
 # Ensure all the common libraries used by areaDetector are included in the build
 # of both library and IOC executable.
-include $(AREADETECTOR)/ADApp/commonDriverMakefile
+include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
 
 include $(TOP)/configure/RULES

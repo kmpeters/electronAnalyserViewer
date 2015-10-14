@@ -33,7 +33,7 @@ AUTOSAVE=$(SUPPORT)/autosave-5-4-1
 # Don't use the ffmpegServer.  It doesn't appear to work.
 #!FFMPEGSERVER=$(SUPPORT)/ffmpegServer/2-1-1dls13
 
-AREADETECTOR=/home/oxygen/KPETERSN/epics/electronAnalyser/areaDetector-1-9-1
+AREA_DETECTOR=/home/oxygen/KPETERSN/epics/electronAnalyser/areaDetector-1-9-1
 
 ZMQ       = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
 PROTOBUF  = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
