@@ -55,3 +55,6 @@ create_monitor_set("auto_settings.req", 30,"P=$(PREFIX),D=cam1:")
 #asynSetTraceMask("$(PORT)", 0, 0x1)
 
 #asynReport(10, "$(PORT)")
+
+# Poke the CONNECTION record so that acquisition doesn't fail
+dbpf "$(PREFIX)cam1:CONNECTION.PROC" 1
