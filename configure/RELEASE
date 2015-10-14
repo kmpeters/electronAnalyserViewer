@@ -8,35 +8,38 @@
 # each time EPICS_BASE, SNCSEQ, or any other external
 # module defined in the RELEASE file is rebuilt.
 
-SUPPORT=/dls_sw/prod/R3.14.12.3/support
+SUPPORT=/APSshare/epics/synApps_5_7/support
 
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION_APP here
 
 # ASYN is needed for sockets and for smartControl
-ASYN=$(SUPPORT)/asyn/4-21
+ASYN=$(SUPPORT)/asyn-4-21
 
 # CALC is needed for scalcout record that SSCAN uses
-CALC=$(SUPPORT)/calc/3-1
+CALC=$(SUPPORT)/calc-3-2
 
 # SSCAN is needed for scanning threshold on Pilatus
-SSCAN=$(SUPPORT)/sscan/2-8-1
+SSCAN=$(SUPPORT)/sscan-2-9
+#!SSCAN=$(SUPPORT)/sscan-2-10-1
 
 # BUSY is needed for busy record
-BUSY=$(SUPPORT)/busy/1-4dls1
+BUSY=$(SUPPORT)/busy-1-6
 
 #AUTOSAVE is needed for save_restore
-#AUTOSAVE=$(SUPPORT)/autosave/4-6dls5
+AUTOSAVE=$(SUPPORT)/autosave-5-4-1
+#!AUTOSAVE=$(SUPPORT)/autosave-5-6-1
 
-FFMPEGSERVER=$(SUPPORT)/ffmpegServer/2-1-1dls13
+# Don't use the ffmpegServer.  It doesn't appear to work.
+#!FFMPEGSERVER=$(SUPPORT)/ffmpegServer/2-1-1dls13
 
-AREADETECTOR=$(SUPPORT)/areaDetector/1-9dls16
+AREADETECTOR=/home/oxygen/KPETERSN/epics/electronAnalyser/areaDetector-1-9-1
 
-ZMQ       = /dls_sw/prod/tools/RHEL6-x86_64/zeromq/3-2-4/prefix/
-PROTOBUF  = /dls_sw/prod/tools/RHEL6-x86_64/protobuf/2-6-0/prefix/
+ZMQ       = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
+PROTOBUF  = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/dls_sw/epics/R3.14.12.3/base
+EPICS_BASE=/APSshare/epics/base-3.14.12.3
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 -include $(TOP)/configure/RELEASE.private
