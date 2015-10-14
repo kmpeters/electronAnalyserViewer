@@ -42,7 +42,8 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=i
 dbLoadRecords("$(TOP)/electronAnalyserViewerApp/Db/electronAnalyserViewer.db","P=$(PREFIX),R=cam1:,PORT=$(PORT)")
 
 # Load all the areaDetector plugins
-< "$(AREA_DETECTOR)/iocBoot/commonPlugins.cmd"
+#!< "$(AREA_DETECTOR)/iocBoot/commonPlugins.cmd"
+< "$(TOP)/iocBoot/$(IOC)/commonPlugins_noMagick.cmd"
 
 < "$(TOP)/iocBoot/$(IOC)/save_restore.cmd"
 

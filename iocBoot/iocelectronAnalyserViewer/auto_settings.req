@@ -2,4 +2,5 @@ file "electronAnalyserViewer_settings.req", P=$(P),  R=cam1:
 file "ADBase_settings.req",         P=$(P),  R=cam1:
 file "NDPluginBase_settings.req",   P=$(P),  R=image1:
 file "NDStdArrays_settings.req",    P=$(P),  R=image1:
-file "commonPlugin_settings.req",   P=$(P)
+#!file "commonPlugin_settings.req",   P=$(P)
+file "commonPlugin_noMagick_settings.req",   P=$(P)
