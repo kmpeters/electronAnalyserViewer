@@ -37,7 +37,12 @@ USR_INCLUDES += -I$(PROTOBUF)/include
 # Build an IOC Application
 # ------------------------
 
-PROD_IOC += electronAnalyserViewer
+PROD_IOC_Linux += electronAnalyserViewer
+
+# electronAnalyserViewer.dbd will be installed into <top>/dbd
+# <name>.dbd will be created from <name>Include.dbd
+DBD += electronAnalyserViewer.dbd
+#DBD += electronAnalyserViewerSupport.dbd
 
 # electronAnalyserViewer.dbd will be created from these files
 electronAnalyserViewer_DBD += commonDriverSupport.dbd
@@ -51,8 +56,10 @@ electronAnalyserViewer_SRCS_DEFAULT += electronAnalyserViewerMain.cpp
 electronAnalyserViewer_SRCS_vxWorks += -nil-
 
 # Add locally compiled object code
-electronAnalyser_LIBS += electronAnalyserViewerSupport
-electronAnalyser_LIBS += NDPlugin 
+electronAnalyserViewer_LIBS += electronAnalyserViewerSupport
+electronAnalyserViewer_LIBS += NDPlugin 
+electronAnalyserViewer_LIBS += zmq
+electronAnalyserViewer_LIBS += protobuf
 
 # We need to link this IOC Application against the EPICS Base libraries
 

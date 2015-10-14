@@ -1,5 +1,8 @@
 O.*
+bin
+db
 dbd
 include
 lib
 makelog*
+envPaths*
