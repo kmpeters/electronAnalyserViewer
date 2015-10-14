@@ -1,10 +1,7 @@
 TOP = ..
 include $(TOP)/configure/CONFIG
 
-DIRS += wsesSrc
 DIRS += src
-
-src_DEPEND_DIRS = wsesSrc
 
 #DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *src*))
 #DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *Src*))
