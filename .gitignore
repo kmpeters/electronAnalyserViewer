@@ -6,3 +6,4 @@ include
 lib
 makelog*
 envPaths*
+autosave
