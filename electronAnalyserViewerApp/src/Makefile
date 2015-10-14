@@ -15,27 +15,6 @@ include $(TOP)/configure/CONFIG
 # Build an Diamond Support Module
 # -------------------------------
 
-# This line is to pick up .hpp files from wsesSrc (because they can't be installed into the includes directory
-USR_INCLUDES += -I../../wsesSrc/
-
-#define the library name
-LIBRARY_IOC_WIN32 += electronAnalyserSupport
-
-# Any specific external resources (not epics) that we need to link to
-USR_CFLAGS +=   -DWIN32
-USR_CXXFLAGS += -DWIN32
-USR_CFLAGS_WIN32 += 
-USR_INCLUDES_WIN32 += 
-USR_LIBS_WIN32 +=
-
-# The following are compiled and added to the support library
-electronAnalyserSupport_SRCS += drvElectronAnalyserRegistrar.c
-electronAnalyserSupport_SRCS += electronAnalyser.cpp
-
-# -------------------------------
-# Build an Diamond Support Module
-# -------------------------------
-
 #define the library name
 LIBRARY_IOC_Linux += electronAnalyserViewerSupport
 
@@ -53,45 +32,27 @@ DBD += electronAnalyserViewerSupport.dbd
 
 USR_INCLUDES += -I$(ZMQ)/include
 USR_INCLUDES += -I$(PROTOBUF)/include
+
 # ------------------------
 # Build an IOC Application
 # ------------------------
 
-PROD_IOC_WIN32 += electronAnalyser
+PROD_IOC += electronAnalyserViewer
 
-# electronAnalyser.dbd will be installed into <top>/dbd
-# <name>.dbd will be created from <name>Include.dbd
-DBD += electronAnalyser.dbd
-DBD += electronAnalyserSupport.dbd
-
-# electronAnalyser.dbd will be created from these files
-electronAnalyser_DBD += commonDriverSupport.dbd
-electronAnalyser_DBD += electronAnalyserSupport.dbd
-electronAnalyser_DBD += NDPluginSupport.dbd
-electronAnalyser_DBD += ffmpegServer.dbd
+# electronAnalyserViewer.dbd will be created from these files
+electronAnalyserViewer_DBD += commonDriverSupport.dbd
+electronAnalyserViewer_DBD += electronAnalyserViewerSupport.dbd
+electronAnalyserViewer_DBD += NDPluginSupport.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-electronAnalyser_SRCS += electronAnalyser_registerRecordDeviceDriver.cpp
+electronAnalyserViewer_SRCS += electronAnalyserViewer_registerRecordDeviceDriver.cpp
 # These two lines are needed for non-vxWorks builds, such as Linux
-electronAnalyser_SRCS_DEFAULT += electronAnalyserMain.cpp
-electronAnalyser_SRCS_vxWorks += -nil-
+electronAnalyserViewer_SRCS_DEFAULT += electronAnalyserViewerMain.cpp
+electronAnalyserViewer_SRCS_vxWorks += -nil-
 
 # Add locally compiled object code
-electronAnalyser_LIBS += electronAnalyserSupport
+electronAnalyser_LIBS += electronAnalyserViewerSupport
 electronAnalyser_LIBS += NDPlugin 
-electronAnalyser_LIBS_WIN32 += wses
-electronAnalyser_LIBS += avdevice avformat avcodec avutil swscale ffmpegServer
-
-# A little linking hack to ensure that nafxcw is linked first (preventing a LNK2005 error)
-electronAnalyser_LDFLAGS_WIN32 +=/NOD:nafxcw.lib
-electronAnalyser_SYS_LIBS_WIN32 +=nafxcw
-
-# Windows libraries for Electron Analyser - non available if needed need to generate from .dll
-#electronAnalyser_LIBS_WIN32 += SESInstrument
-#SESInstrument_DIR = ../lib
-
-# This is probably not necessary as we build statically against the .lib files
-#BIN_INSTALLS_WIN32 += ../dll/SESWrapper.dll ../dll/SESInstrument.dll $(AREADETECTOR)/ADApp/tiffSupport/libtiff3.dll
 
 # We need to link this IOC Application against the EPICS Base libraries
 
