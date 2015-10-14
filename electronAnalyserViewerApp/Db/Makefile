@@ -9,19 +9,9 @@ include $(TOP)/configure/CONFIG
 
 #----------------------------------------------------
 
-DB += electronAnalyser.template
-DB += electronAnalyserViewer.template
-#!DB += electronAnalyserExample.db
+DB += electronAnalyserViewer.db
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-
-# FIXME: This is a custom rule to use msi to expand the substitutions file
-#        into a database for this IOC. The reason for the custom rule is that
-#        convertDlsRelease.pl does not currently handle expanding the support
-#        modules paths properly on Windows W: Once that is fixed we can remove
-#        this rule and go back to using the dls rules...
-#!electronAnalyserExample.db: ../electronAnalyserExample.substitutions
-#!	msi -I.. -I$(FFMPEGSERVER)/db -I$(ASYN)/db -I$(AREADETECTOR)/db -I$(EPICS_BASE)/db -S$? <$(DEV_NULL) > $@
 
