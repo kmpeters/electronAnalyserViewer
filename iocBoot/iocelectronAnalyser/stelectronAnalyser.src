@@ -1,0 +1,54 @@
+
+#!$(INSTALL)/bin/$(ARCH)/example
+
+< envPath
+
+# Register all support components
+dbLoadDatabase("$(TOP)/dbd/electronAnalyser.dbd")
+electronAnalyser_registerRecordDeviceDriver(pdbbase)
+
+# Configure electron analyser driver plugin. Runs the electron analyser constructor.
+#
+# Max memory calculation:
+#   size 1024 x 1000 x 2 bytes per pixel = 2048000 bytes
+#   Number of plugin buffers: 10
+#   total number of NDArray buffers needed; 10 + 1 = 11
+#   Max memory: 2048000 bytes x 11 = 22528000 bytes. Rounded up: ~25MB
+
+# electronAnalyserConfig(portName, 30, Max Memory)
+electronAnalyserConfig("CCD.CAM", 30, -1)
+#electronAnalyserConfig("CCD.CAM", 30, 25000000, 0, 0)
+
+# NDROIConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxBuffers, maxMemory)
+NDROIConfigure("CCD.ROI", 16, 0, "CCD.CAM", 0, 50, -1)
+
+# NDFileHDF5Configure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+NDFileHDF5Configure("CCD.HDF", 16, 0, "CCD.CAM", 0)
+
+# NDStdArraysConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+NDStdArraysConfigure("CCD.ARR", 2, 0, "CCD.CAM", 0, -1)
+
+ffmpegServerConfigure(8085)
+# ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+ffmpegStreamConfigure("CCD.MPG", 2, 0, "CCD.CAM", "0", -1)
+
+# NDProcessConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxBuffers, maxMemory)
+NDProcessConfigure("CCD.PROC", 16, 0, "CCD.CAM", 0, 50, -1)
+
+# NDStatsConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxBuffers, maxMemory)
+NDStatsConfigure("CCD.STAT", 16, 0, "CCD.CAM", 0, 50, -1)
+
+asynSetTraceMask("CCD.CAM", 0, 0x1)
+#asynSetTraceMask("electronAnalyser", 0, 0x1)
+
+dbLoadRecords("$(TOP)/db/electronAnalyser.template","P=ELECTRON-ANALYSER-01,R=:TEST:,PORT=CCD.CAM")
+dbLoadRecords("$(TOP)/db/electronAnalyserExample.db","P=ELECTRON-ANALYSER-01,R=:TEST")
+
+iocInit()
+#asynSetTraceMask("electronAnalyser", 0, 0x11)
+asynSetTraceMask("CCD.CAM", 0, 0x11)
+# Setup the asyn trace mask to print TRACE_FLOW and TRACE_ERROR asyn messages
+
+#asynReport(10, "electronAnalyser")
+
+dbpf ELECTRON-ANALYSER-01:TEST:PoolUsedMem.SCAN "Passive"

@@ -1,0 +1,43 @@
+#RELEASE Location of external products
+# Run "gnumake clean uninstall install" in the application
+# top directory each time this file is changed.
+#
+# NOTE: The build does not check dependancies on files
+# external to this application. Thus you should run
+# "gnumake clean uninstall install" in the top directory
+# each time EPICS_BASE, SNCSEQ, or any other external
+# module defined in the RELEASE file is rebuilt.
+
+SUPPORT=/dls_sw/prod/R3.14.12.3/support
+
+# If you don't want to install into $(TOP) then
+# define INSTALL_LOCATION_APP here
+
+# ASYN is needed for sockets and for smartControl
+ASYN=$(SUPPORT)/asyn/4-21
+
+# CALC is needed for scalcout record that SSCAN uses
+CALC=$(SUPPORT)/calc/3-1
+
+# SSCAN is needed for scanning threshold on Pilatus
+SSCAN=$(SUPPORT)/sscan/2-8-1
+
+# BUSY is needed for busy record
+BUSY=$(SUPPORT)/busy/1-4dls1
+
+#AUTOSAVE is needed for save_restore
+#AUTOSAVE=$(SUPPORT)/autosave/4-6dls5
+
+FFMPEGSERVER=$(SUPPORT)/ffmpegServer/2-1-1dls13
+
+AREADETECTOR=$(SUPPORT)/areaDetector/1-9dls16
+
+ZMQ       = /dls_sw/prod/tools/RHEL6-x86_64/zeromq/3-2-4/prefix/
+PROTOBUF  = /dls_sw/prod/tools/RHEL6-x86_64/protobuf/2-6-0/prefix/
+
+# EPICS_BASE usually appears last so other apps can override stuff:
+EPICS_BASE=/dls_sw/epics/R3.14.12.3/base
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+
+-include $(TOP)/configure/RELEASE.private
+
