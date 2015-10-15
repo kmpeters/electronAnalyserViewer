@@ -20,7 +20,6 @@ electronAnalyserViewer_registerRecordDeviceDriver(pdbbase)
 # Configure electron analyser viewer 
 # IP address specified in a PV: $(PREFIX):cam1:CONNECTION
 #   "tcp://192.168.0.1:55555"
-#   "tcp://164.54.118.4:8888"
 
 electronAnalyserViewerConfig("$(PORT)", 30, 25000000, 0, 0)
 
