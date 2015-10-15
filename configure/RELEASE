@@ -32,8 +32,8 @@ AUTOSAVE=$(SUPPORT)/autosave-5-4-1
 
 AREA_DETECTOR=$(SUPPORT)/areaDetector-1-9-1
 
-ZMQ       = /tmp/home/epics/electronAnalyser/tools/local
-PROTOBUF  = /tmp/home/epics/electronAnalyser/tools/local
+ZMQ       = $(TOP)/tools/local
+PROTOBUF  = $(TOP)/tools/local
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/APSshare/epics/base-3.14.12.3
