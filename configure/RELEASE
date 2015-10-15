@@ -30,13 +30,10 @@ BUSY=$(SUPPORT)/busy-1-6
 AUTOSAVE=$(SUPPORT)/autosave-5-4-1
 #!AUTOSAVE=$(SUPPORT)/autosave-5-6-1
 
-# Don't use the ffmpegServer.  It doesn't appear to work.
-#!FFMPEGSERVER=$(SUPPORT)/ffmpegServer/2-1-1dls13
+AREA_DETECTOR=$(SUPPORT)/areaDetector-1-9-1
 
-AREA_DETECTOR=/home/oxygen/KPETERSN/epics/electronAnalyser/areaDetector-1-9-1
-
-ZMQ       = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
-PROTOBUF  = /home/oxygen/KPETERSN/epics/electronAnalyser/tools/local
+ZMQ       = /tmp/home/epics/electronAnalyser/tools/local
+PROTOBUF  = /tmp/home/epics/electronAnalyser/tools/local
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/APSshare/epics/base-3.14.12.3
