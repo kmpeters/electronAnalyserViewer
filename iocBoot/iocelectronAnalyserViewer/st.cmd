@@ -34,8 +34,8 @@ NDStdArraysConfigure("Image1", 3, 0, "$(PORT)", 0)
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0")
 
 # This creates a waveform large enough for 1392x1040x1 (e.g. grayscale) arrays.
-# This waveform only allows transporting 64-bit images
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Float64,FTVL=DOUBLE,NELEMENTS=1447680")
+# This waveform only allows transporting 8-bit images
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Int8,FTVL=UCHAR,NELEMENTS=1447680")
 
 # Load the detector-specific PVs
 dbLoadRecords("$(TOP)/electronAnalyserViewerApp/Db/electronAnalyserViewer.db","P=$(PREFIX),R=cam1:,PORT=$(PORT)")
